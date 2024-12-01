@@ -1,0 +1,10 @@
+# Abaikan file log
+*.log
+
+# Abaikan file sementara dari sistem operasi
+.DS_Store
+
+# Abaikan folder tertentu
+/node_modules/
+/temp/
+/output/
