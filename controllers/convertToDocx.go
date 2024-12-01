@@ -5,9 +5,11 @@ import (
 	"log"
 	"os"
 
+	// "github.com/unidoc/unipdf/document"
+	"github.com/unidoc/unioffice/document"
+	"github.com/unidoc/unipdf"
 	"github.com/unidoc/unipdf/v3/common/license"
 	"github.com/unidoc/unipdf/v3/extractor"
-	"github.com/unioffice/unioffice/document"
 )
 
 // Pastikan untuk mengganti dengan lisensi UniPDF Anda
