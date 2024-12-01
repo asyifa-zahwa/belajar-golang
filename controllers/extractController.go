@@ -10,7 +10,7 @@ import (
 )
 
 // Handler untuk menerima file ZIP
-func uploadAndExtractHandler(w http.ResponseWriter, r *http.Request) {
+func UploadAndExtractHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Hanya mendukung metode POST", http.StatusMethodNotAllowed)
 		return

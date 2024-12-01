@@ -50,14 +50,14 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"pdfToWord/controllers"
 )
 
 func main() {
-	http.HandleFunc("/upload", uploadAndExtractHandler)
+	http.HandleFunc("/upload", controllers.UploadAndExtractHandler)
 
 	// Jalankan server
 	port := ":8080"
 	fmt.Println("Server berjalan di port", port)
 	http.ListenAndServe(port, nil)
 }
-
