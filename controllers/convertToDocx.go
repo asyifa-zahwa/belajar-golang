@@ -5,9 +5,10 @@ import (
 	"log"
 	"os"
 
-	// "github.com/unidoc/unipdf/document"
 	"github.com/unidoc/unioffice/document"
-	"github.com/unidoc/unipdf"
+	"github.com/unidoc/unipdf/v3"
+
+	//"github.com/unidoc/unipdf/document"
 	"github.com/unidoc/unipdf/v3/common/license"
 	"github.com/unidoc/unipdf/v3/extractor"
 )
@@ -17,7 +18,7 @@ const uniPDFLicense = "YOUR_UNIPDF_LICENSE_KEY"
 
 func ConvertToDocx() {
 	// Inisialisasi lisensi UniPDF
-	err := license.SetLicense(uniPDFLicense, "")
+	err := license.SetLicenseKey(uniPDFLicense, "")
 	if err != nil {
 		log.Fatal(err)
 	}
