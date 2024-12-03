@@ -54,13 +54,13 @@ func UploadAndExtractHandler(w http.ResponseWriter, r *http.Request) {
 	// Ekstrak file ZIP
 	err = extractZip(tempZipPath, extractDir)
 	if err != nil {
-		http.Error(w, "Gagal mengekstrak file ZIP", http.StatusInternalServerError)
+		http.Error(w, "Gagal mengekstrak file ZIP"+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Hapus file ZIP sementara
 	os.Remove(tempZipPath)
-
+	ConvertToDocx(fileHeader.Filename)
 	// Balas ke client
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "File ZIP berhasil diekstrak ke: %s", extractDir)

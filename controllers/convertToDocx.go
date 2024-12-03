@@ -15,9 +15,9 @@ import (
 )
 
 // Pastikan untuk mengganti dengan lisensi UniPDF Anda
-const uniPDFLicense = "YOUR_UNIPDF_LICENSE_KEY"
+const uniPDFLicense = "84fa0a89996aa28922e938277081f81312bfe7433380b93bdd22229b5467baed"
 
-func ConvertToDocx() {
+func ConvertToDocx(fileName string) {
 	// Inisialisasi lisensi UniPDF
 	err := license.SetLicenseKey(uniPDFLicense, "")
 	if err != nil {
@@ -25,7 +25,7 @@ func ConvertToDocx() {
 	}
 
 	// Membaca file PDF
-	filePath := "input.pdf"
+	filePath := "./output/" + fileName + ".pdf"
 	pdfFile, err := os.Open(filePath)
 	if err != nil {
 		log.Fatalf("Unable to open PDF file: %v", err)
@@ -69,7 +69,7 @@ func ConvertToDocx() {
 	doc.AddParagraph().AddRun().AddText(extractedText)
 
 	// Simpan DOCX ke file
-	outputPath := "output.docx"
+	outputPath := fileName + ".docx"
 	err = doc.SaveToFile(outputPath)
 	if err != nil {
 		log.Fatalf("Unable to save DOCX file: %v", err)
