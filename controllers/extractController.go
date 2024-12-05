@@ -60,7 +60,7 @@ func UploadAndExtractHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Hapus file ZIP sementara
 	os.Remove(tempZipPath)
-	ConvertToDocx(fileHeader.Filename)
+	//ConvertToDocx(fileHeader.Filename)
 	// Balas ke client
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "File ZIP berhasil diekstrak ke: %s", extractDir)

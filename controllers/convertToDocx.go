@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 
@@ -17,7 +18,7 @@ import (
 // Pastikan untuk mengganti dengan lisensi UniPDF Anda
 const uniPDFLicense = "84fa0a89996aa28922e938277081f81312bfe7433380b93bdd22229b5467baed"
 
-func ConvertToDocx(fileName string) {
+func ConvertToDocx(folderName string) {
 	// Inisialisasi lisensi UniPDF
 	err := license.SetLicenseKey(uniPDFLicense, "")
 	if err != nil {
@@ -25,8 +26,25 @@ func ConvertToDocx(fileName string) {
 	}
 
 	// Membaca file PDF
-	filePath := "./output/" + fileName + ".pdf"
-	pdfFile, err := os.Open(filePath)
+	folderPatch := "./output/" + folderName + "/"
+	// Path folder yang ingin diperiksa
+	//folderPath := "./folderA"
+
+	// Membaca isi folder
+	files, err := ioutil.ReadDir(folderPatch)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Menampilkan nama file di folder
+	namaFile := ""
+	fmt.Println("Daftar file dalam folder:")
+	for _, file := range files {
+		namaFile = file.Name()
+		fmt.Println(file.Name())
+	}
+
+	pdfFile, err := os.Open(namaFile)
 	if err != nil {
 		log.Fatalf("Unable to open PDF file: %v", err)
 	}
@@ -69,7 +87,7 @@ func ConvertToDocx(fileName string) {
 	doc.AddParagraph().AddRun().AddText(extractedText)
 
 	// Simpan DOCX ke file
-	outputPath := fileName + ".docx"
+	outputPath := namaFile + ".docx"
 	err = doc.SaveToFile(outputPath)
 	if err != nil {
 		log.Fatalf("Unable to save DOCX file: %v", err)
